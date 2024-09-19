@@ -71,7 +71,41 @@ section {
 }
 #home_div{
     padding-left: 1rem;
-    width: fit-content;
+    width: fit-content; 
+}
+
+#sustain_section1{
+    flex-direction: row;
+}
+#sustain_section2{
+    flex-direction: row;
+}
+#sustain_section3{
+    flex-direction: row;
+}
+.sustain_div{
+    padding-left: 1rem;
+     width: fit-content; 
+}
+
+#contact1{
+    flex-direction: row;
+}
+#contact2{
+    flex-direction: row;
+}
+.contact-item{
+        display: flex;
+        padding-left: 1rem;
+        width:auto;
+        flex-direction: column;
+        text-align:left;
+        img{
+            width:55%;
+            height:fit-content;
+            margin-right: auto;
+          }  
+
 }
 
 h1{
@@ -82,6 +116,7 @@ h2 {
     color: #2c3e50;
     font-size: 2rem;
     margin-bottom: 1rem;
+    text-decoration: none;
 }
 
 h3 {
