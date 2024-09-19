@@ -12,21 +12,35 @@ body {
     background-color: #f4f4f4;
     color: #333;
 }
-
-header {
+#hero {
     background-color: #004357;
     color: #00B0B8;
     text-align: center; 
     padding: 1.5rem 0;
+    font-size: large;
+}
+header {
+    background-color: #004357;
+    color:#f4f4f4;
+    text-align:flex-end; 
+    padding: 1 rem 0;
+    display:flex;
+    line-height:96px;
+    img{
+        width: 96px;
+        height: 96px;
+        margin-right: auto;
+      }
 }
 
-header h1 {
+#hero h1 {
     font-size: 2.5rem;
 }
 
-header p {
+#hero p {
     font-size: 1.2rem;
-    margin-top: 0.5rem;
+    margin-top: 1 rem;
+    color: #f4f4f4;
 }
 
 nav ul {
@@ -40,7 +54,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #00B0B8;
+    color:#f4f4f4;
     text-decoration: none;
 }
 
@@ -133,10 +147,10 @@ img {
 
 .faq-question {
     width: 100%;
-    text-align: left;
+    text-align: center;
     padding: 1rem;
-    background-color: #004357 ;
-    color: #00B0B8;
+    background-color:#f4f4f4 ;
+    color:#333;
     border: none;
     cursor: pointer;
     font-size: 1.2rem;
@@ -158,7 +172,7 @@ img {
 }
 
 .faq-question:hover {
-    color: white;
+    color:#00B0B8;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 }
