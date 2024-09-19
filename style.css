@@ -22,15 +22,16 @@ body {
 header {
     background-color: #004357;
     color:#f4f4f4;
-    text-align:flex-end; 
-    padding: 1 rem 0;
+    padding: 1rem 0;
     display:flex;
     line-height:96px;
-    img{
+}
+
+.header-img{
         width: 96px;
         height: 96px;
         margin-right: auto;
-      }
+      
 }
 
 #hero h1 {
@@ -39,7 +40,7 @@ header {
 
 #hero p {
     font-size: 1.2rem;
-    margin-top: 1 rem;
+    margin-top: 1rem;
     color: #f4f4f4;
 }
 
@@ -100,13 +101,12 @@ section {
         width:auto;
         flex-direction: column;
         text-align:left;
-        img{
+}
+.contact-img{
             width:55%;
             height:fit-content;
             margin-right: auto;
-          }  
-
-}
+            }
 
 h1{
     text-align: center;
