@@ -109,6 +109,22 @@ ul {
     margin-left: 2rem;
 }
 
+.banner{
+    background-color: #004357;
+    color: #f4f4f4;
+    text-align: center; 
+    padding: 1.5rem 0;
+    font-size:x-large;
+}
+
+.home{
+    flex-direction: row;
+}
+.home_div{
+    padding-left: 1rem;
+    width: fit-content; 
+}
+
 /* Footer Styles */
 footer {
     display: flex;
