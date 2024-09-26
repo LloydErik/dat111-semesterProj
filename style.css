@@ -311,3 +311,52 @@ img {
     text-align: center;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, max(15rem, 100%/4)), 1fr));
     }
+
+
+/* borgir */
+@media (max-width: 768px) {
+    nav {
+        display: none;
+        
+    }
+
+    .burger-menu {
+        display: block;
+        cursor: pointer;
+        font-size: 2rem;
+        color: #f4f4f4;
+        padding-right: 1rem;
+        margin-left: auto;
+    }
+
+    nav.active {
+        display: block;
+        background-color: #004357;
+        position: absolute;
+        top: 96px; 
+        right: 0;
+        width: 100%;
+        text-align: center;
+        z-index: 1;
+    }
+
+    nav ul {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 0;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #f4f4f4;
+    }
+
+    nav ul li a {
+        color: #f4f4f4;
+        text-decoration: none;
+        padding: 1rem;
+        display: block;
+    }
+}
