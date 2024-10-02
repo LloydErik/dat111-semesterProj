@@ -109,6 +109,21 @@ ul {
     margin-left: 2rem;
 }
 
+.h1_invisible{
+    position: absolute !important;
+    height: 1px; width: 1px; 
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: polygon(0px 0px, 0px 0px,0px 0px, 0px 0px);
+}
+
+.h2_white {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    color: #f4f4f4;
+}
+
 .banner{
     background-color: #004357;
     color: #f4f4f4;
