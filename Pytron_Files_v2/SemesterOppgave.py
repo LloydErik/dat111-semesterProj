@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import RangeSlider
 import matplotlib.image as mpimg
 import matplotlib.patches as mpatches
+import PIL
+import urllib.request
 
 # Generater random data for a year
 # centervals are values average values for each month
@@ -150,7 +152,7 @@ def plot_graph():
 
     # Plot Map of Bergen
     axBergen.axis('off')
-    img = mpimg.imread('/Users/asmundsollesnes/Documents/GitHub/dat111-semesterProj/Pytron_Files_v2/Bergen.jpg')
+    img = np.array(PIL.Image.open(urllib.request.urlopen('https://www.hvltopia.no/Bergen.jpg')))
     img = axBergen.imshow(img)
     axBergen.set_title("Kart Bergen")
     draw_circles_stations()
