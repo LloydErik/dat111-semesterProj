@@ -1,7 +1,6 @@
 import math
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.widgets import RadioButtons
 from matplotlib.widgets import RangeSlider
 import matplotlib.image as mpimg
 import matplotlib.patches as mpatches
@@ -11,8 +10,6 @@ import matplotlib.patches as mpatches
 # samedata = false, new data each time program is called
 import random
 from random import randint
-
-from numpy.ma.extras import average
 
 
 def GenereateRandomYearDataList(intencity:float, seed:int=0) -> list[int]:
@@ -43,11 +40,11 @@ nord_nox_year = GenereateRandomYearDataList(intencity=.3, seed = 1)
 
 
 #create figure and 3 axis
-fig = plt.figure(figsize=(13, 5))
+fig = plt.figure(figsize=(15, 7))
 
-axNok = fig.add_axes((0.05, 0.05, 0.45, 0.9))
-axInterval = fig.add_axes((0.4, 0.5, 0.1, 0.25))
-axBergen = fig.add_axes((0.5, 0.05, 0.5, 0.9))
+axNok = fig.add_axes((0.04, 0.06, 0.45, 0.9))
+axInterval = fig.add_axes((0.55, 0.015, 0.38, 0.1))
+axBergen = fig.add_axes((0.495, 0.06, 0.5, 1))
 
 axInterval.patch.set_alpha(0.5)
 
@@ -60,26 +57,10 @@ marked_point = (0,0)
 def on_day_interval(tuppel):
     global days_interval, marked_point
     axNok.cla()
-    days_interval = (tuppel[0],tuppel[1])
+    days_interval = (int(tuppel[0]),int(tuppel[1]))
     marked_point = (0, 0)
     plot_graph()
 
-"""
-def on_day_interval(kvartal):
-    global days_interval, marked_point
-    axNok.cla()
-    days_interval = (1,365)
-    if kvartal == '1. Kvartal':
-        days_interval = (1,90)
-    if kvartal == '2. Kvartal':
-        days_interval = (90, 180)
-    if kvartal == '3. Kvartal':
-        days_interval = (180,270)
-    if kvartal == '4. Kvartal':
-        days_interval = (270,365)
-    marked_point = (0, 0)
-    plot_graph()
-"""
 
 def on_click(event) :
     global marked_point
@@ -106,9 +87,7 @@ def draw_circles_stations():
     axBergen.add_patch(circle)
 
 def draw_label_and_ticks():
-    num_labels = 12
-    xlabels = ['J' ,'F' ,'M' ,'A' ,'M' ,'J', 'J', 'A', 'S', 'O', 'N', 'D']
-
+    xlabels = ['Jan' ,'Feb' ,'Mar' ,'Apr' ,'Mai' ,'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des']
 
     start = days_interval[0]
     slutt = days_interval[1]
@@ -127,26 +106,10 @@ def draw_label_and_ticks():
     num_labels = len(xlabels)
 
     
-    xticks = np.linspace(15, 345, math.floor(num_labels))
+    xticks = np.linspace(start, slutt, math.floor(num_labels))
 
-    
-    """
-    if days_interval[1] == 90:
-        xticks = [15,45,75]
-        xlabels = ['Jan', 'Feb', 'Mars']
-    if days_interval[1] == 180:
-        xticks = [15,45,75]
-        xlabels = ['April', 'Mai', 'Juni']
-    if days_interval[1] == 270:
-        xticks = [15, 45, 75]
-        xlabels = ['July', 'Aug', 'Sept']
-    if days_interval[0] == 270:
-        xticks = [15, 45, 75]
-        xlabels = ['Okt', 'Nov', 'Des']
-
-    """
     axNok.set_xticks(xticks)
-    axNok.set_xticklabels(xlabels)
+    axNok.set_xticklabels(xlabels, rotation=90)
 
 def plot_graph():
     axNok.cla()
@@ -159,7 +122,7 @@ def plot_graph():
     avg_kron_nord = (avg_nord_nox / avg_kron_nox)
     avg_percent = avg_kron_nord * 100
     days = len(nord_nox)
-    list_days = np.linspace(1, days, days)
+    list_days = np.linspace(days_interval[0], days_interval[1], days)
 
 #draw the marked point & the orange graph
     l3 = None
@@ -173,7 +136,8 @@ def plot_graph():
     l2, = axNok.plot(list_days, kron_nox, 'red')
     l4, = axNok.plot(list_days, avg_nox, 'green')
     axNok.set_title("NOX verdier")
-    axInterval.set_title("Intervall")
+    axInterval.set_title("Her kan du velge intervall(dager i år) du ønsker data for:")
+    axNok.set_xlim([days_interval[0], days_interval[1]])
 
     lines = [l1, l2, l4] if l3 is None else [l1, l2, l4, l3]
     axNok.legend(lines, [f"Nordnes i intervall, avg. = {avg_nord_nox:.2f} PPM", f"Kronstad i intervall, avg. = {avg_kron_nox:.2f} PPM", f"Avg. i intervallet(ifft Kronstad, i %) = {avg_percent:.2f}%", "Markert plass"])
@@ -182,10 +146,10 @@ def plot_graph():
 
     #Plot Map of Bergen
     axBergen.axis('off')
-    img = mpimg.imread('Bergen.jpg')
+    img = mpimg.imread('/Users/asmundsollesnes/Documents/GitHub/dat111-semesterProj/Pytron_Files_v2/Bergen.jpg')
     img = axBergen.imshow(img)
     axBergen.set_title("Kart Bergen")
-    draw_circles_stations();
+    draw_circles_stations()
     plt.draw()
 
 plot_graph()
@@ -194,18 +158,7 @@ plot_graph()
 listFonts = [12] * 5
 listColors = ['yellow'] * 5
 
-radio_slider = RangeSlider(axInterval, "Dager", 1, 365, valstep=1)
-"""
-radio_button = RadioButtons(axInterval, ('År',
-                                          '1. Kvartal',
-                                          '2. Kvartal',
-                                          '3. Kvartal',
-                                          '4. Kvartal'),
-                            label_props={'color': listColors, 'fontsize' : listFonts},
-                            radio_props={'facecolor': listColors,  'edgecolor': listColors},
-                            )
-
-"""
+radio_slider = RangeSlider(axInterval, "Dager", 1, 365, valinit=(1, 365), valstep=1)
 
 axInterval.set_facecolor('darkblue')
 radio_slider.on_changed(on_day_interval)
