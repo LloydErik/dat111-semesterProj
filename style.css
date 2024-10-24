@@ -384,3 +384,7 @@ img {
         display: block;
     }
 }
+
+.map{
+    width:100%;
+}
